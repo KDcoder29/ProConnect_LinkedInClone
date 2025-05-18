@@ -1,0 +1,158 @@
+.homeContainer{
+    display: flex;
+}
+.homeContainer > div:nth-child(odd){
+    flex: 0.2;
+}
+.homeContainer > div:nth-child(even){
+    flex: 0.6;
+} 
+.homeContainer_leftBar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fff; /* optional: keep consistent background */
+    padding: 16px;
+    border-right: 1px solid #e0e0e0;
+  }
+  
+.sideBarOption{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 1.3rem;
+    max-width: 80%;
+    width: 80%;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.8ms;
+}
+.sideBarOption:hover{
+    transform: scale(1.02);
+}
+
+.sideBarOption > svg{
+    height: 1.4em;
+    min-width: fit-content;
+}
+
+.homeContainer_extraContainer{
+    border-left: 1px solid rgb(222,222,222);
+    padding-left: 1.2rem;
+}
+.homeContainer_feedContainer{
+    padding-inline : 0.8rem;
+}
+
+.mobileNavbar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 6vh;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+}
+.mobileNavbar svg{
+    height: 2.2rem;
+    width: 2.2rem;
+    
+}
+.topProfileCard {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+  
+  .topProfileCard:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .profileImgSmall {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #6c63ff;
+  }
+  
+  .profileEmail {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 2px 0 0 0;
+  }
+  
+  .moreProfilesCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px dashed #ccc;
+    transition: background-color 0.2s ease;
+  }
+  
+  .moreProfilesCard:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .moreProfilesText {
+    text-align: center;
+  }
+  
+  .moreProfilesText strong {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .moreProfilesText p {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .sideBarOption {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .sideBarOption:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+  }
+  
+  
+
+@media only screen and (max-width: 600px){
+    .homeContainer_extraContainer{
+        display:  none;
+
+    }
+    .homeContainer{
+        display: block;
+    }
+    .homeContainer_leftBar{
+        display: none;
+    }
+    .mobileNavbar{
+        display: flex;
+    }
+    .homeContainer_feedContainer{
+        padding-bottom: 8vh;
+    }
+
+}

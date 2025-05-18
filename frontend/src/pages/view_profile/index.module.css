@@ -1,0 +1,178 @@
+.container {
+    padding: 2rem;
+    background: #f9f9fb;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .backDropContainer {
+    width: 100%;
+    height: 30vh;
+    background: url("https://www.shutterstock.com/image-illustration/light-blue-technology-linkedin-banner-260nw-2358315117.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: visible; /* ← important: allow image to overflow */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .backDropContainer img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -5rem;         /* Pushes the image outside the bottom */
+    left: 2.5rem;
+    z-index: 10;           /* Ensures it appears above everything */
+    border: 5px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  .profileContainer_details {
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .profileContainer_details h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .profileContainer_details p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .connectButton,
+  .connectedButton {
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  
+  .connectButton {
+    background-color: #0360d9;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .connectButton:hover {
+    background-color: #024aad;
+  }
+  
+  .connectedButton {
+    background-color: transparent;
+    color: #0360d9;
+    border: 2px solid #0360d9;
+  }
+  
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .card_profileContainer img {
+    width: 3.4rem;
+    height: 3.4rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+  }
+  
+  .workHistory {
+    padding: 2rem 0;
+  }
+  
+  .workHistory h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .workHistoryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+  }
+  
+  .workHistoryCard {
+    flex: 1 1 250px;
+    min-width: 250px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+  
+  .workHistoryCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .workHistoryCard p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #444;
+  }
+  
+.profileContainer_flex{
+  display: flex;
+  gap: 0.7rem;
+}
+  @media only screen and (max-width : 600px){
+    .profileContainer_flex{
+      flex-direction: column;
+
+    }
+  }
+
+  .connectedButton {
+    background-color: #4caf50; /* Green for success */
+    color: white;
+    border: none;
+    height: 32px;
+    width: 110px;
+    font-size: 14px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 15px;
+    cursor: default;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+  }
+  .connectedButton:hover {
+    background-color: #45a049;
+  }
+
+  .pendingButton {
+    background-color: #ff9800; /* Orange for pending */
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: default;
+  }
+  

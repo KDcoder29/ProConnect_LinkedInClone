@@ -1,0 +1,118 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80svh;
+    background: white;
+  }
+  
+  .cardContainer {
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardContainer_left {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .cardleft_heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .inputContainers {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .inputRow {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .inputfield {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    transition: 0.3s border;
+  }
+  
+  .inputfield:focus {
+    border-color: #0a66c2;
+    outline: none;
+  }
+  
+  /* For the button on both sides (general improvement) */
+.buttonWithOutline {
+    background: white;
+    color: #0a66c2;
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid #0a66c2;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .buttonWithOutline:hover {
+    background: #0a66c2;
+    color: white;
+  }
+  
+  
+  .cardContainer_right {
+    flex: 0.8;
+    background: linear-gradient(to right, #0a66c2, #004182);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .cardContainer_right p {
+    font-size: 1.2rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .cardContainer {
+      flex-direction: column-reverse;
+      border-radius: 10px;
+    }
+  
+    .cardContainer_right,
+    .cardContainer_left {
+      flex: 1;
+      padding: 1.5rem;
+    }
+  
+    .cardleft_heading {
+      font-size: 1.5rem;
+      color: white;
+    }
+  
+    .inputRow {
+      flex-direction: column;
+    }
+  }
+  

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.container {
+  padding: 1.2rem 2rem;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease-in-out;
+  font-weight: lighter;
+}
+
+.brand:hover {
+  transform: scale(1.05);
+}
+
+.navBarOptionContainer {
+  display: flex;
+  align-items: center;
+}
+
+.authOptions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navItem {
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #444;
+  transition: color 0.2s;
+}
+
+.navItem:hover {
+  color: #8a2be2;
+}
+
+.buttonJoin {
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg, rgb(197, 44, 208), rgb(139, 10, 145));
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.buttonJoin:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(197, 44, 208, 0.4);
+}
