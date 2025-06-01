@@ -28,16 +28,19 @@ export const createPost = async (req,res)=>{
     }
 }
 
-export const getAllPosts = async(req,res) =>{
-    try{
-        console.log("posts");
-        const posts = await Post.find().populate('userId','name username email profilePicture');
-        return res.json({posts});
-        
-    }catch(error){
-        return res.status(500).json({message : error.message});
+export const getAllPosts = async(req, res) => {
+    try {
+        console.log("Fetching posts...");
+        const posts = await Post.find()
+            .populate('userId', 'name username email profilePicture')
+            .populate('likedBy', '_id'); // optional: populate user IDs who liked
+
+        return res.json({ posts });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
     }
-}
+};
+
 
 export const deletePost = async (req,res) =>{
     const {token , post_id} = req.body;
@@ -120,30 +123,84 @@ export const delete_comment_of_user = async(req,res) =>{
 
 
 
-
 export const increment_likes = async (req, res) => {
-
-  
-
-    try {
-        // Find the post
-        const post = await Post.findOne({ _id: req.body.post_id });
-        if (!post) {
-            return res.status(404).json({ message: "Post not found" });
-        }
-            post.likes += 1;
-        await post.save();
-
-        return res.status(200).json({ message: "Post like status updated" });
-    } catch (error) {
-        return res.status(500).json({ message: "Server error" });
+  try {
+    // Extract token from Authorization header (format: "Bearer <token>")
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "Authorization token missing or invalid" });
     }
+
+    const token = authHeader.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({ message: "Authorization token missing" });
+    }
+
+    // Find user by token
+    const user = await User.findOne({ token });
+    if (!user) {
+      return res.status(401).json({ message: "User not found or token invalid" });
+    }
+
+    const userId = user._id;
+
+    const { post_id } = req.body;
+    if (!post_id) {
+      return res.status(400).json({ message: "post_id is required" });
+    }
+
+    // Find the post
+    const post = await Post.findOne({ _id: post_id });
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Check if user already liked the post
+    const alreadyLiked = post.likedBy.some(id => id.toString() === userId.toString());
+
+    if (alreadyLiked) {
+      // User already liked: decrement likes and remove userId from likedBy
+      post.likes = Math.max(post.likes - 1, 0); // prevent negative likes
+      post.likedBy = post.likedBy.filter(id => id.toString() !== userId.toString());
+
+      await post.save();
+      return res.status(200).json({ message: "Like removed", likes: post.likes });
+    } else {
+      // User not liked yet: increment likes and add userId
+      post.likes += 1;
+      post.likedBy.push(userId);
+
+      await post.save();
+      return res.status(200).json({ message: "Post liked successfully", likes: post.likes });
+    }
+
+  } catch (error) {
+    console.error("Error incrementing likes:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
 };
 
 
 
 
 
+// export const authMiddleware = (req, res, next) => {
+//   const authHeader = req.headers.authorization;
+
+//   if (!authHeader || !authHeader.startsWith("Bearer ")) {
+//     return res.status(401).json({ message: "No token provided" });
+//   }
+
+//   const token = authHeader.split(" ")[1];
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//     req.user = decoded; // Make sure it contains the `id`
+//     next();
+//   } catch (err) {
+//     return res.status(401).json({ message: "Invalid token" });
+//   }
+// };
 // export const authenticate = (req, res, next) => {
 //     const token = req.headers.authorization?.split(" ")[1];
 //     if (!token) return res.status(401).json({ message: "No token provided" });

@@ -61,22 +61,31 @@ export const deletePost = createAsyncThunk(
 )
 
 export const incrementLike = createAsyncThunk(
-    "post/incrementLike",
-    async (post, thunkAPI) => {
-        try {
-            const token = localStorage.getItem("token");  // Get the token from localStorage
-            const response = await clientServer.post(
-                "/increment_likes",
-                { 
-                    post_id: post.post_id,
-                     // Send token in the request body
-                }
-            );
-            return thunkAPI.fulfillWithValue(response.data);
-        } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+  "post/incrementLike",
+  async (post, thunkAPI) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("User not authenticated");
+
+      const response = await clientServer.post(
+        "/increment_likes",
+        {
+          post_id: post.post_id
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}` // Important!
+          }
         }
+      );
+
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error?.response?.data || { message: "Something went wrong" }
+      );
     }
+  }
 );
 
 export const getAllComments = createAsyncThunk(
